@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import {auth} from './src/firebase/config';
-import Register from './src/screens/Register/Register';
+import {auth} from './src/firebase/config.js';
+import Register from './src/screens/register.js';
 
 export default function App() {
   return (
