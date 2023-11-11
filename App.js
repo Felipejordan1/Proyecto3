@@ -6,7 +6,6 @@ import Register from './src/screens/register.js';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Texto default a la espera</Text>
       <Register/>
       <StatusBar style="auto" />
     </View>
