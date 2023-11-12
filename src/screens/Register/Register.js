@@ -14,13 +14,13 @@ class Register extends Component {
         }
     }
 
-    register (email, pass){
+    register (email, pass, userName){
         auth.createUserWithEmailAndPassword(email, pass)
             .then((res)=>{
                 console.log('Se ha registrado correctamente', res);
                 db.collection('usuarios').add({
                     owner: auth.currentUser.email,
-                    username: this.state.userName,
+                    username: userName,
                     biografia: this.state.biografia,
                     profilePicture: this.state.profilePicture,
                     createdAt: Date.now(), 
@@ -57,7 +57,7 @@ class Register extends Component {
                     secureTextEntry={true}
                     value={this.state.password}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName)}>
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Login')}>

@@ -51,7 +51,7 @@ class Login extends Component {
                     secureTextEntry={true}
                     value={this.state.password}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Menu')}>
                     <Text style={styles.textButton}>Login</Text>    
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Register')}>

@@ -13,11 +13,19 @@ class Home extends Component {
             profilePicture:'',
         }
     }
-
+    cerrarSesion(){
+        auth.signOut();
+        this.props.navigation.navigate("Login");
+        
+    }
     render(){
         return(
             <View >
                 <Text>Home</Text>
+                <Text>Buenos dias {this.state.userName}</Text>
+                <TouchableOpacity onPress={()=>this.cerrarSesion()}>
+                    <Text>Cerrar Sesion</Text>
+                </TouchableOpacity>
             </View>
         )
     }
