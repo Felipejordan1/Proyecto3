@@ -1,8 +1,8 @@
 import react, { Component } from 'react';
 import {auth} from '../../firebase/config';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 
-class Login extends Component {
+class Loguearse extends Component {
     constructor(){
         super()
         this.state={
@@ -35,27 +35,28 @@ class Login extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
+                <Image style={styles.image} source={require('../../../assets/logonewgarden.jpg')} resizeMode= 'center'/>
                 <Text>Login</Text>
                 <TextInput
-                    style={styles.input}
+                    style={styles.input1}
                     onChangeText={(text)=>this.setState({email: text})}
                     placeholder='email'
                     keyboardType='email-address'
                     value={this.state.email}
                     />
                 <TextInput
-                    style={styles.input}
+                    style={styles.input2}
                     onChangeText={(text)=>this.setState({password: text})}
                     placeholder='password'
                     keyboardType='email-address'
                     secureTextEntry={true}
                     value={this.state.password}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Menu')}>
+                <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email,this.state.password)}>
                     <Text style={styles.textButton}>Login</Text>    
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Register')}>
-                    <Text>¿No tenes cuenta?</Text>  
+                <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Registro')}>
+                    <Text style={styles.textButton}>¿No tenes cuenta?</Text>  
                 </TouchableOpacity>
             </View>
         )
@@ -66,26 +67,37 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
+        backgroundColor: '#FFFFFF',
+        height:'97vh',
     },
-    input:{
+    input2:{
         height:20,
         paddingVertical:15,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#ccc',
+        borderColor: '#FF0000',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical:10,
+    },
+    input1:{
+        height:20,
+        paddingVertical:15,
+        paddingHorizontal: 10,
+        borderWidth:1,
+        borderColor: '#28a745',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#28a745',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
+        backgroundColor:'#FF0000',
+        padding:10,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#FF0000'
     },
     textButton:{
         color: '#fff'
@@ -93,15 +105,23 @@ const styles = StyleSheet.create({
     buttonRegister:{
         color: "#000",
         padding:10,
-        marginVertical:15,
+        marginVertical:10,
         borderSolid:'solid',
         borderRadius:4,
         borderWidth:1,
-        borderColor:'red',
-        textAlign: 'center'
+        borderColor:'#28a745',
+        textAlign: 'center',
+        backgroundColor:'#28a745'
+    },
+    image:{
+        height:80,
+        width:"100%",
+    },
+    textoBoton:{
+        color:'#FFFFFF'
     }
 
 })
 
 
-export default Login;
+export default Loguearse;
