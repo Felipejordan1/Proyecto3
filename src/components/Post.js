@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
       marginVertical: 10,
     },
     button: {
-      backgroundColor: "orange",
+      backgroundColor: "green",
       paddingHorizontal: 10,
       paddingVertical: 6,
       textAlign: "center",
       borderRadius: 4,
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: "orange",
+      borderColor: "green",
       width: "30%",
     },
     textButton: {
