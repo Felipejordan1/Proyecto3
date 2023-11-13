@@ -17,7 +17,7 @@ class PostForm extends Component {
             createdAt:Date.now(),
         })
         .then(console.log('Tu posteo se subio correctamente'))
-        .catch(error=>console.log(error))
+        .catch(error=>console.log(`el error fue ${error}`))
     }
     render(){
         return(
@@ -26,12 +26,12 @@ class PostForm extends Component {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({nombrePost: text})}
-                    placeholder='Postea algo'
+                    placeholder='Escribe tu post...'
                     keyboardType='default'
                     value={this.state.nombrePost}
                     />
                 <TouchableOpacity style={styles.button} onPress={()=>this.postear()}>
-                    <Text style={styles.textButton}>Postea</Text>    
+                    <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
             </View>
         )
