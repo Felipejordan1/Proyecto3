@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from '../screens/Home/Home';
 import User from '../screens/User/User';
 import PostForm from '../screens/PostForm/PostForm';
+import Buscador from '../screens/Buscador/Buscador';
 const Tab= createBottomTabNavigator();
 class Menu extends Component {
     constructor(){
@@ -23,9 +24,10 @@ class Menu extends Component {
     render(){
         return(
             <Tab.Navigator>
-                <Tab.Screen name='Home' component={Home}/>
-                <Tab.Screen name='PostForm' component={PostForm}/>
-                <Tab.Screen name='User' component={User}/>
+                <Tab.Screen name='Home' component={Home} options={{headerShown:false}}/>
+                <Tab.Screen name='Crear Posteo' component={PostForm} options={{headerShown:false}}/>
+                <Tab.Screen name='Buscador' component={Buscador} options={{headerShown:false}}/>
+                <Tab.Screen name='Usuario' component={User} options={{headerShown:false}}/>
             </Tab.Navigator>
         )
     }

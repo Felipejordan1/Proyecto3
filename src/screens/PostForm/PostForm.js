@@ -22,7 +22,6 @@ class PostForm extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text>Register</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({nombrePost: text})}

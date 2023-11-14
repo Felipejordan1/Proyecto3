@@ -11,9 +11,14 @@ class Loguearse extends Component {
             password:'',
             biografia:'',
             profilePicture:'',
+            error:'',
         };
     }
     componentDidMount(){
+        console.log('se monto la pagina');
+        this.setState({
+                    error:''
+                })
         auth.onAuthStateChanged((user)=>{
             if (user){
                 this.props.navigation.navigate("Menu")
@@ -27,8 +32,12 @@ class Loguearse extends Component {
                 console.log('El usuario ingreso correctamente', res);
                 this.props.navigation.navigate("Menu")
             })
-            .catch( error => {
-                console.log(error);
+            .catch( erroneo => {
+                
+                console.log(erroneo);
+                this.setState({
+                    error: erroneo.message 
+                })
             })
     }
 
@@ -52,12 +61,13 @@ class Loguearse extends Component {
                     secureTextEntry={true}
                     value={this.state.password}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email,this.state.password)}>
+                {this.state.email.length <4 && this.state.password <4 ?(<Text></Text>):(<TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email,this.state.password)}>
                     <Text style={styles.textButton}>Login</Text>    
-                </TouchableOpacity>
+                </TouchableOpacity>)}
                 <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Registro')}>
                     <Text style={styles.textButton}>¿No tenes cuenta?</Text>  
                 </TouchableOpacity>
+                <Text style={styles.error}>{this.state.error}</Text>
             </View>
         )
     }
@@ -119,6 +129,9 @@ const styles = StyleSheet.create({
     },
     textoBoton:{
         color:'#FFFFFF'
+    },
+    error:{
+        color: 'red'
     }
 
 })

@@ -3,7 +3,7 @@ import {db, auth } from '../../firebase/config';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 import logo from '../../../assets/newgarden.jpg'
 
-class Registro extends Component {
+class Buscador extends Component {
     constructor(){
         super()
         this.state={
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Registro;
+export default Buscador;

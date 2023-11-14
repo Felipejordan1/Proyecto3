@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, Button} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet,} from 'react-native';
 import {db, auth } from '../firebase/config';
 import firebase from 'firebase';
 
@@ -64,11 +64,10 @@ class Post extends Component {
     render(){
         console.log(this.props);
         return(
-            <View>
-                <Text>----------------------------------------------------</Text>
-                <Text>Datos del Post</Text>
-                <Text>Email: {this.props.dataPost.datos.owner}</Text>
-                <Text>Texto: {this.props.dataPost.datos.post}</Text>
+            <View style={styles.contenedor}>
+                <Text style={styles.data}>Datos del Post</Text>
+                <Text style={styles.data}>Email: {this.props.dataPost.datos.owner}</Text>
+                <Text style={styles.data}>Texto: {this.props.dataPost.datos.post}</Text>
 
                {/* If ternario */}
                {this.state.like ? 
@@ -91,34 +90,34 @@ class Post extends Component {
 }
 
 const styles = StyleSheet.create({
-    formContainer: {
-      paddingHorizontal: 10,
-      marginTop: 20,
-    },
-    input: {
-      height: 20,
-      paddingVertical: 15,
-      paddingHorizontal: 10,
-      borderWidth: 1,
-      borderColor: "#ccc",
-      borderStyle: "solid",
-      borderRadius: 6,
-      marginVertical: 10,
-    },
     button: {
-      backgroundColor: "green",
+      backgroundColor: "#28a745",
       paddingHorizontal: 10,
       paddingVertical: 6,
       textAlign: "center",
       borderRadius: 4,
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: "green",
+      borderColor: "#28a745",
       width: "30%",
+      marginBottom: 5,
     },
     textButton: {
       color: "#fff",
     },
+    data:{
+        color:'#FF0000',
+        marginVertical:7
+    },
+    contenedor:{
+        borderColor:'#28a745',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderRadius:10,
+        marginVertical:7,
+        flex:1,
+        alignItems:'center'
+    }
   });
 
 export default Post;
