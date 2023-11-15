@@ -31,7 +31,7 @@ class Registro extends Component {
             })
             .catch( erroneo => {
                 console.log(erroneo);
-                this.setState({error:erroneo.mesage})
+                this.setState({error:erroneo.message})
             })
     }
 
@@ -47,6 +47,7 @@ class Registro extends Component {
                     keyboardType='email-address'
                     value={this.state.email}
                     />
+                <Text style={styles.error}>{this.state.error}</Text>
                 <TextInput
                     style={styles.input2}
                     onChangeText={(text)=>this.setState({userName: text})}
@@ -54,7 +55,6 @@ class Registro extends Component {
                     keyboardType='default'
                     value={this.state.userName}
                     />
-                {/* {this.state.userName<8 ? <Text style={styles.error}>{this.setState({campo:'Este campo debe ser completado'})}</Text>: <Text style={styles.error}> {this.setState({campo:''})}</Text>} */}
                 <TextInput
                     style={styles.input1}
                     onChangeText={(text)=>this.setState({password: text})}
@@ -63,6 +63,7 @@ class Registro extends Component {
                     secureTextEntry={true}
                     value={this.state.password}
                 />
+                <Text style={styles.error}>{this.state.error}</Text>
                 <TextInput
                     style={styles.input2}
                     onChangeText={(text)=>this.setState({biografia: text})}
@@ -77,13 +78,13 @@ class Registro extends Component {
                     keyboardType='default'
                     value={this.state.profilePicture}
                 />
-                {this.state.email.length <=4 && this.state.password.length <=4 &&this.state.userName.length <=4 ? (<Text></Text>) :( <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName)}>
+                {this.state.email.length >4 && this.state.password.length >4 &&this.state.userName.length >4 ? ( <TouchableOpacity style={styles.button} onPress={()=>this.register(this.state.email, this.state.password, this.state.userName)}>
                     <Text style={styles.textButton}>Registrarse</Text>    
-                </TouchableOpacity>)}
+                </TouchableOpacity>): (<Text></Text>)}
                 <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Loguearse')}>
                     <Text style={styles.textoBoton}>¿Ya tenes cuenta? Inicia sesion</Text>  
                 </TouchableOpacity>
-                <Text style={styles.error}>{this.state.error}</Text>
+                
             </View>
         )
     
