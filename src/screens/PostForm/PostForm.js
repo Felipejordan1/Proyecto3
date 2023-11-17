@@ -1,41 +1,66 @@
 import react, { Component } from 'react';
 import {db, auth } from '../../firebase/config';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import MyCamera from "../../components/MyCamera";
 
 class PostForm extends Component {
     constructor(){
         super()
         this.state={
-            nombrePost: "",
+            nombrePost: "", showCamera: true, url: ''
         }
     }
     postear(){
         db.collection("posts").add({
             owner:auth.currentUser.email,
             post:this.state.nombrePost,
+            photo: this.state.url,
             likes:[],
             createdAt:Date.now(),
         })
         .then(console.log('Tu posteo se subio correctamente'))
         .catch(error=>console.log(`el error fue ${error}`))
     }
+
+    onImageUpload(url){ 
+        this.setState({ url: url , showCamera: false});
+      }
+    
+
+
+
     render(){
         return(
-            <View style={styles.formContainer}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>this.setState({nombrePost: text})}
-                    placeholder='Escribe tu post...'
-                    keyboardType='default'
-                    value={this.state.nombrePost}
-                    />
-                <TouchableOpacity style={styles.button} onPress={()=>this.postear()}>
-                    <Text style={styles.textButton}>Postear</Text>    
-                </TouchableOpacity>
-            </View>
-        )
+
+
+            <View style={styles.formContainer}>          
+              
+              <Text>PostForm</Text>
+    
+            {this.state.showCamera ? <MyCamera onImageUpload={(url) => this.onImageUpload(url)} /> : 
+    
+            <>
+    
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ nombrePost: text })}
+              placeholder="Escribe tu post.."
+              keyboardType="default"
+              value={this.state.nombrePost}
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.postear()}
+            >
+              <Text style={styles.textButton}>Postear</Text>
+            </TouchableOpacity>
+            </> }
+          </View>
+        );
+      }
     }
-}
+
+     
 const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,

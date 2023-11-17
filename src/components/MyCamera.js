@@ -21,14 +21,15 @@ class MyCamera extends Component{
         .catch(e=> console.log(e))
     }
     tomarunapic(){
-        this.metodosCamara.takePicturesAsync()
+        this.metodosCamara.takePictureAsync()
         .then( photo=> {
             this.setState({
-                photo: photo.url,
+                photo: photo.uri,
                 showCamera: false
             })
-            .catch(e => console.log(e))
         })
+            .catch(e => console.log(e))
+       
     }
     rechazarFoto(){
         this.setState({
@@ -39,8 +40,9 @@ class MyCamera extends Component{
         fetch(this.state.photo)
         .then(res => res.blob())
         .then(image => {
-            const ref= storage.ref(`photo/${Date.now()}.jpg`)
+            const ref = storage.ref(`photo/${Date.now()}.jpg`)
             ref.put(image)
+            .then (console.log("se guardo la foto"))
             .then( ()=> {
                 ref.getDownloadURL()
                 .then( url => {
@@ -50,10 +52,8 @@ class MyCamera extends Component{
         })
         .catch(e => console.log(e))
     }
-    //On image va al screen postform
-    onImageUpload(url){
-        this.setState({url:url, showCamera:false})
-    }
+
+
     render(){
         console.log(this.state.photo);
         return (
@@ -62,7 +62,10 @@ class MyCamera extends Component{
                 this.state.showCamera ?
                 <View style={styles.formContainer}>
                     <Camera style={styles.camera} type={Camera.Constants.Type.front} ref={metodosCamara =>this.metodosCamara=metodosCamara}/>
-                    <TouchableOpacity style={styles.button} onPress={()=> this.tomarunapic}>
+                    <TouchableOpacity 
+                        style={styles.button} 
+                        onPress={()=> this.tomarunapic()}>
+
                         <Text style={styles.textButton}>Sacar foto</Text>
                     </TouchableOpacity>
                 </View>

@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {TouchableOpacity, View, Text, StyleSheet,} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet,Image} from 'react-native';
 import {db, auth } from '../firebase/config';
 import firebase from 'firebase';
 
@@ -10,6 +10,7 @@ class Post extends Component {
         super(props)
         this.state={
             like: false,
+
         }
 
 
@@ -68,6 +69,11 @@ class Post extends Component {
                 <Text style={styles.data}>Datos del Post</Text>
                 <Text style={styles.data}>Email: {this.props.dataPost.datos.owner}</Text>
                 <Text style={styles.data}>Texto: {this.props.dataPost.datos.post}</Text>
+                <Image style={styles.camera} source={{uri:this.props.dataPost.datos.photo }}/>
+                <Text>Cantidad de Likes: {this.props.dataPost.datos.likes.length}</Text>
+
+
+
 
                {/* If ternario */}
                {this.state.like ? 
@@ -102,6 +108,14 @@ const styles = StyleSheet.create({
       width: "30%",
       marginBottom: 5,
     },
+
+
+
+    camera: {
+        height: 220,
+        width: 300,
+    },
+
     textButton: {
       color: "#fff",
     },
@@ -117,7 +131,11 @@ const styles = StyleSheet.create({
         marginVertical:7,
         flex:1,
         alignItems:'center'
-    }
+        
+        
+    },
+
+    
   });
 
 export default Post;
