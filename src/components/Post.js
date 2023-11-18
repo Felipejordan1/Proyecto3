@@ -62,14 +62,22 @@ class Post extends Component {
 
 
 
+   deletePost(){
+    db.collection('posts').doc(this.props.dataPost.id).delete()
+    .then( res => {
+        console.log('Post eliminado');
+    })
+    .catch( e => console.log(e))
+   }
+
     render(){
         console.log(this.props);
         return(
             <View style={styles.contenedor}>
-                <Text style={styles.data}>Datos del Post</Text>
-                <Text style={styles.data}>Email: {this.props.dataPost.datos.owner}</Text>
-                <Text style={styles.data}>Texto: {this.props.dataPost.datos.post}</Text>
+                <Text style={styles.data}>Usuario: {this.props.dataPost.datos.owner}</Text>
                 <Image style={styles.camera} source={{uri:this.props.dataPost.datos.photo }}/>
+                <Text style={styles.data}>Titulo: {this.props.dataPost.datos.post}</Text>
+
                 <Text>Cantidad de Likes: {this.props.dataPost.datos.likes.length}</Text>
 
 
@@ -77,8 +85,9 @@ class Post extends Component {
 
                {/* If ternario */}
                {this.state.like ? 
-                <TouchableOpacity style={styles.button} onPress={()=>this.dislike()}>
+                <TouchableOpacity style={styles.button2} onPress={()=>this.dislike()}>
                     <Text style={styles.textButton} >Dislike</Text>
+
                     
 
                 </TouchableOpacity>
@@ -87,6 +96,12 @@ class Post extends Component {
                     <Text style={styles.textButton} >Like</Text>
                 </TouchableOpacity>
                 }
+
+            {auth.currentUser.email == this.props.dataPost.datos.owner && 
+                        <TouchableOpacity style={styles.deletebutton} onPress={()=>this.deletePost()} activeOpacity={0.7}>
+                            <Text style={styles.textButton}>Delete post</Text>
+                        </TouchableOpacity>
+                        } 
 
 
 
@@ -109,7 +124,31 @@ const styles = StyleSheet.create({
       marginBottom: 5,
     },
 
+    button2: {
+        backgroundColor: "red",
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: "center",
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: "red",
+        width: "30%",
+        marginBottom: 5,
+      },
 
+      deletebutton: {
+        backgroundColor: "orange",
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: "center",
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: "orange",
+        width: "30%",
+        marginBottom: 5,
+      },
 
     camera: {
         height: 220,
@@ -119,18 +158,24 @@ const styles = StyleSheet.create({
     textButton: {
       color: "#fff",
     },
+    
+
     data:{
-        color:'#FF0000',
-        marginVertical:7
+        color:'Black',
+        fontWeight:"bold",
+        marginVertical:7,
+        fontFamily:"Arial"
     },
     contenedor:{
-        borderColor:'#28a745',
         borderStyle: 'solid',
+        borderBlockColor:"black",
         borderWidth: 1,
         borderRadius:10,
         marginVertical:7,
         flex:1,
-        alignItems:'center'
+        alignItems:'center',
+        width: "100%",
+        height: "auto"
         
         
     },

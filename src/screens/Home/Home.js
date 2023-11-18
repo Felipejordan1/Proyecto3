@@ -52,8 +52,9 @@ class Home extends Component {
                     <TouchableOpacity onPress={()=>this.cerrarSesion()}>
                         <Text>Cerrar Sesion</Text>
                     </TouchableOpacity>
-                <View style={styles.conteiner}>
-                    <Text style={styles.listadoTitulo}>Lista de posteos creados</Text>
+                
+                <View style={styles.container}>
+                    <Text style={styles.listadoTitulo}>Picture it</Text>
 
                     <FlatList 
                             data= {this.state.listaPost}
@@ -69,17 +70,18 @@ class Home extends Component {
 }
 const styles = StyleSheet.create({
     lista:{
-        width:'70vw'
+        width:'50vw'
     },
-    conteiner:{
+    container:{
         flex:1,
         backgroundColor:'#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
+        width: "100%"
+        
     },
     titulo:{
-        flex:0.1,
-        backgroundColor:'#FF0000',
+        backgroundColor:'black',
         flexDirection: 'row'
     },
     textoTitulo:{
@@ -90,9 +92,10 @@ const styles = StyleSheet.create({
     },
     listadoTitulo:{
         fontSize:18,
-        fontFamily:'Courier New',
+        fontFamily:'Arial',
+        fontWeight:"bold",
         marginTop:20,
-        color: '#28a745'
+        color: 'black'
     },
 })
 export default Home;
