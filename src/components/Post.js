@@ -17,7 +17,6 @@ class Post extends Component {
     }
 
 
-
     componentDidMount(){
         //Indicar si el post ya está likeado o no.
         if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){

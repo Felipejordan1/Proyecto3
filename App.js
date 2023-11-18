@@ -15,6 +15,7 @@ export default function App() {
       <Stack.Screen name='Loguearse' component={Loguearse} options={{headerShown:false}}/>
       <Stack.Screen name='Registro' component={Registro} options={{headerShown:false}}/>
       <Stack.Screen name='Menu' component={Menu} options={{headerShown:false}}/>
+
         
       </Stack.Navigator>
     </NavigationContainer>
