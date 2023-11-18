@@ -44,19 +44,19 @@ class Loguearse extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Image style={styles.image} source={require('../../../assets/logonewgarden.jpg')} resizeMode= 'center'/>
-                <Text>Login</Text>
+                <Image style={styles.image} source={require('../../../assets/InstaSport.PNG')} resizeMode= 'center'/>
+                <Text style={styles.textoLogin}>Login</Text>
                 <TextInput
                     style={styles.input1}
                     onChangeText={(text)=>this.setState({email: text})}
-                    placeholder='email'
+                    placeholder='Email'
                     keyboardType='email-address'
                     value={this.state.email}
                     />
                 <TextInput
                     style={styles.input2}
                     onChangeText={(text)=>this.setState({password: text})}
-                    placeholder='password'
+                    placeholder='Password'
                     keyboardType='email-address'
                     secureTextEntry={true}
                     value={this.state.password}
@@ -77,15 +77,20 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#ff8370',
         height:'97vh',
+    },
+    textoLogin:{
+        fontWeight:'bold',
+        fontSize:30,
     },
     input2:{
         height:20,
         paddingVertical:15,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#FF0000',
+        backgroundColor:'white',
+        borderColor: 'black',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
@@ -95,19 +100,20 @@ const styles = StyleSheet.create({
         paddingVertical:15,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#28a745',
+        backgroundColor:'white',
+        borderColor: 'black',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#FF0000',
+        backgroundColor:'#28a745',
         padding:10,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#FF0000'
+        borderColor: 'white'
     },
     textButton:{
         color: '#fff'
@@ -119,12 +125,12 @@ const styles = StyleSheet.create({
         borderSolid:'solid',
         borderRadius:4,
         borderWidth:1,
-        borderColor:'#28a745',
+        borderColor:'white',
         textAlign: 'center',
-        backgroundColor:'#28a745'
+        backgroundColor:'black'
     },
     image:{
-        height:80,
+        height:300,
         width:"100%",
     },
     textoBoton:{
@@ -132,8 +138,7 @@ const styles = StyleSheet.create({
     },
     error:{
         color: 'red'
-    }
-
+    },
 })
 
 
