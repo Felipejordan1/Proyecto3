@@ -13,7 +13,7 @@ class User extends Component {
         }   
     }
     componentDidMount(){
-        db.collection('users').where('owner', '==', auth.currentUser.email).onSnapshot(
+        db.collection('usuarios').where('owner', '==', auth.currentUser.email).onSnapshot(
             docs =>{
                 let users = [];
                 docs.forEach( doc => {

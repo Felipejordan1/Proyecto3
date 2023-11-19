@@ -6,15 +6,21 @@ import {auth} from './src/firebase/config.js';
 import Menu from './src/components/menu.js';
 import Registro from './src/screens/Registro/Registro.js';
 import Loguearse from './src/screens/Loguearse/Loguearse.js';
+import SearchedUser from "./src/screens/SearchedUser/SearchedUser.js"
 
 export default function App() {
   const Stack= createNativeStackNavigator() ;
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
       <Stack.Screen name='Loguearse' component={Loguearse} options={{headerShown:false}}/>
       <Stack.Screen name='Registro' component={Registro} options={{headerShown:false}}/>
       <Stack.Screen name='Menu' component={Menu} options={{headerShown:false}}/>
+      <Stack.Screen name='SearchedUser' component={SearchedUser} options={{headerShown:false}}/>
+
+
+
 
         
       </Stack.Navigator>

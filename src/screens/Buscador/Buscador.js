@@ -9,7 +9,8 @@ class Buscador extends Component {
         this.state={
             todosUsers: [],
             usersFiltrados: [],
-            searchText: ''
+            searchText: '',
+
         }
     }
 
@@ -37,9 +38,12 @@ class Buscador extends Component {
 
     searchUsers(searchText){
       this.state.todosUsers.forEach( unUser => {
-        if (searchText.length==0){
+        if (searchText.length===0){
             this.setState({
-                usersFiltrados: []
+                usersFiltrados: [],
+                mensajeError: 'No hay resultados que coincidan.',
+
+
             })
         }
         if (unUser.datos.owner.includes(searchText) ) {
@@ -82,8 +86,12 @@ class Buscador extends Component {
                         renderItem=
                         { ({item}) =>
                         <View style={styles.cadaResult}>
-                            <Image style={styles.profileImage}source={item.datos.profileImage} />
-                            <Text style={styles.usuario}>{item.datos.owner}</Text> 
+                            
+
+                            <TouchableOpacity onPress={()=> this.props.navigation.navigate("SearchedUser", { dataUser: item.data })}>
+                                <Image style={styles.profileImage}source={item.datos.profilePicture} />
+                                <Text style={styles.rta}>User Name:  {item.datos.owner}</Text>
+                            </TouchableOpacity>
                         </View>
                         }
                         style= {styles.listaPosts}

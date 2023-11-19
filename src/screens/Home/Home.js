@@ -57,7 +57,7 @@ class Home extends Component {
                         <Text style={styles.textoHeader}>Buenos dias, Valentin{this.state.userName}</Text>
                         <View style={styles.headerRightButtons}>
                             <TouchableOpacity style={styles.buttonPerfil}>
-                                <Text style={styles.textoPerfil}>Tu Perfil</Text>
+                                <Text style={styles.textoPerfil}  onPress={()=>this.props.navigation.navigate('Usuario')}> Tu Perfil</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonCS} onPress={()=>this.cerrarSesion()}>
                                 <Text style={styles.textoPerfil}>Cerrar Sesion</Text>
