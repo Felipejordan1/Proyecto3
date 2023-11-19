@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {TouchableOpacity, View, Text, StyleSheet,Image,TextInput} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet,Image,TextInput,FlatList} from 'react-native';
 import {db, auth } from '../firebase/config';
 import firebase from 'firebase';
 
@@ -10,15 +10,20 @@ class Post extends Component {
         super(props)
         this.state={
             like: false,
-            comment: [],
+            arrayComments: [],
+            commentText: [],
+            cantidadComments: 0,
         }
-
-
     }
 
 
     componentDidMount(){
         //Indicar si el post ya está likeado o no.
+        if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
+            this.setState({
+                like: true
+            })
+        }
         if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
             this.setState({
                 like: true
@@ -43,19 +48,19 @@ class Post extends Component {
     .catch( e => console.log(e))
    }
 
-   comment(comments, date){
-    let comment = {
+   comentar(comments, date){
+    let comentar = {
         userName: auth.currentUser.email,
         createdAt:date,
-        texto: comments
+        text: comments
     }
-    db.collection('posts').doc(this.props.datapost.id).update({
-        comments: firebase.firestore.FieldValue.arrayUnion(comment)
+    db.collection('posts').doc(this.props.dataPost.id).update({
+        arrayComments: firebase.firestore.FieldValue.arrayUnion(comentar)
     })
     .then(res => this.setState({
         user: auth.currentUser.email,
-        comment: this.props.dataPost.datos.comment,
-        cantidadComments: this.props.dataPost.datos.comments.length
+        comentar: this.props.dataPost.datos.comentario,
+        cantidadComments: this.props.dataPost.datos.arrayComments.length
     })
     )
     .catch(e => console.log(e))
@@ -119,18 +124,29 @@ class Post extends Component {
                                 }
                 </View>
                 <View style={styles.comentarios}>
+                    {this.props.dataPost.datos.arrayComments != null ?(
+                        <FlatList data={this.props.dataPost.datos.arrayComments} keyExtractor={(com)=> com.id} renderComentario={({comentario}) => (
+                          <Text style={styles.comentario}>
+                            <Text style={styles.usuarioComentario}>{comentario.userName}</Text>
+                            <Text style={styles.comentarioShow}>{comentario.text}</Text>
+                          </Text>
+                        )}/>
+                    ):(<Text style={styles.comentarioVacio}>Se el primero en comentar</Text>)}
                     <View style={styles.insertarComentario}>
                         <TextInput
                             style={styles.comentar}
-                            onChangeText={(text)=>this.setState({comment: text})}
+                            onChangeText={(texto)=>this.setState({commentText: texto})}
                             placeholder='Comentar...'
                             keyboardType='default'
-                            value={this.state.comment}
+                            value={this.state.commentText}
                         />
-                        {this.state.comment.length === 0 ?(<Text></Text>):(<TouchableOpacity style={styles.buttonComentar} onPress={()=>this.comment(this.state.text,Date.now())}>
+                        {this.state.commentText.length === 0 ?(<Text></Text>):(<TouchableOpacity style={styles.buttonComentar} onPress={()=>this.comentar(this.state.commentText,Date.now())}>
                             <Text style={styles.textButton}>Enviar</Text>    
                         </TouchableOpacity>)}
                     </View>
+                    <TouchableOpacity style={styles.buttonMasComentarios}>
+                            <Text style={styles.textoBotonComentarios}  onPress={()=>this.props.navigation.navigate('Comentarios')}>Todos los comentarios</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -250,6 +266,26 @@ const styles = StyleSheet.create({
         width:60,
         marginLeft:5,
         marginTop:15,
+    },
+    comentarioShow:{
+        color:'black',
+    },
+    buttonMasComentarios:{
+        backgroundColor:'black',
+        padding:10,
+        justifyContent:'center',
+        alignContent:'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: 'black',
+        height:30,
+        width:170,
+        marginLeft:5,
+        marginTop:15,
+    },
+    textoBotonComentarios:{
+        color:'white',
     },
     
   });
