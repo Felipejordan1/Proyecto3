@@ -88,7 +88,7 @@ class Buscador extends Component {
                         <View style={styles.cadaResult}>
                             
 
-                            <TouchableOpacity onPress={()=> this.props.navigation.navigate("SearchedUser", { dataUser: item.data })}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("SearchedUser", { owner: item.datos.owner })}>
                                 <Image style={styles.profileImage}source={item.datos.profilePicture} />
                                 <Text style={styles.rta}>User Name:  {item.datos.owner}</Text>
                             </TouchableOpacity>
