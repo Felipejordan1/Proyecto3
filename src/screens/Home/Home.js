@@ -54,7 +54,7 @@ class Home extends Component {
                         </View>
                     </View>
                     <View style={styles.headerRight}>
-                        <Text style={styles.textoHeader}>Buenos dias, Valentin{this.state.userName}</Text>
+                        <Text style={styles.textoHeader}>Buenos dias, {this.state.userName}</Text>
                         <View style={styles.headerRightButtons}>
                             <TouchableOpacity style={styles.buttonPerfil}>
                                 <Text style={styles.textoPerfil}  onPress={()=>this.props.navigation.navigate('Usuario')}> Tu Perfil</Text>
@@ -72,7 +72,7 @@ class Home extends Component {
                     <FlatList 
                             data= {this.state.listaPost}
                             keyExtractor={ unPost => unPost.id } //generamos una clave unica por cada elemento
-                            renderItem={({item}) => <Post dataPost = {item}/>}
+                            renderItem={ ({item}) => <Post dataPost = {item} navigation={this.props.navigation} />  }
                             style={styles.lista}
                     
                     />

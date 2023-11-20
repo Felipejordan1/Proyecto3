@@ -7,6 +7,7 @@ import Menu from './src/components/menu.js';
 import Registro from './src/screens/Registro/Registro.js';
 import Loguearse from './src/screens/Loguearse/Loguearse.js';
 import SearchedUser from "./src/screens/SearchedUser/SearchedUser.js"
+import Comentarios from './src/screens/Comentarios/Comentarios.js';
 
 export default function App() {
   const Stack= createNativeStackNavigator() ;
@@ -18,10 +19,7 @@ export default function App() {
       <Stack.Screen name='Registro' component={Registro} options={{headerShown:false}}/>
       <Stack.Screen name='Menu' component={Menu} options={{headerShown:false}}/>
       <Stack.Screen name='SearchedUser' component={SearchedUser} options={{headerShown:false}}/>
-
-
-
-
+      <Stack.Screen name='Comentarios' component={Comentarios} options={{headerShown:false}}/>
         
       </Stack.Navigator>
     </NavigationContainer>

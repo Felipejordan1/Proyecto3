@@ -10,20 +10,12 @@ class Post extends Component {
         super(props)
         this.state={
             like: false,
-            arrayComments: [],
-            commentText: [],
-            cantidadComments: 0,
         }
     }
 
 
     componentDidMount(){
         //Indicar si el post ya está likeado o no.
-        if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
-            this.setState({
-                like: true
-            })
-        }
         if(this.props.dataPost.datos.likes.includes(auth.currentUser.email)){
             this.setState({
                 like: true
@@ -94,7 +86,6 @@ class Post extends Component {
         console.log(this.props);
         return(
             <View style={styles.contenedor}>
-                <View style={styles.posteo}>
                     <Text style={styles.data}>Usuario: {this.props.dataPost.datos.owner}</Text>
                     <Image style={styles.camera} source={{uri:this.props.dataPost.datos.photo }}/>
                     <Text style={styles.data}>Titulo: {this.props.dataPost.datos.post}</Text>
@@ -117,37 +108,15 @@ class Post extends Component {
                         </TouchableOpacity>
                         }
 
+                    <TouchableOpacity style={styles.buttonComentar}>
+                            <Text style={styles.textoBotonComentarios}  onPress={() => this.props.navigation.navigate('Comentarios', { id: this.props.dataPost.id })}>Comentarios</Text>
+                    </TouchableOpacity>
+
                     {auth.currentUser.email == this.props.dataPost.datos.owner && 
                                 <TouchableOpacity style={styles.deletebutton} onPress={()=>this.deletePost()} activeOpacity={0.7}>
                                     <Text style={styles.textButton}>Delete post</Text>
                                 </TouchableOpacity>
                                 }
-                </View>
-                <View style={styles.comentarios}>
-                    {this.props.dataPost.datos.arrayComments != null ?(
-                        <FlatList data={this.props.dataPost.datos.arrayComments} keyExtractor={(com)=> com.id} renderComentario={({comentario}) => (
-                          <Text style={styles.comentario}>
-                            <Text style={styles.usuarioComentario}>{comentario.userName}</Text>
-                            <Text style={styles.comentarioShow}>{comentario.text}</Text>
-                          </Text>
-                        )}/>
-                    ):(<Text style={styles.comentarioVacio}>Se el primero en comentar</Text>)}
-                    <View style={styles.insertarComentario}>
-                        <TextInput
-                            style={styles.comentar}
-                            onChangeText={(texto)=>this.setState({commentText: texto})}
-                            placeholder='Comentar...'
-                            keyboardType='default'
-                            value={this.state.commentText}
-                        />
-                        {this.state.commentText.length === 0 ?(<Text></Text>):(<TouchableOpacity style={styles.buttonComentar} onPress={()=>this.comentar(this.state.commentText,Date.now())}>
-                            <Text style={styles.textButton}>Enviar</Text>    
-                        </TouchableOpacity>)}
-                    </View>
-                    <TouchableOpacity style={styles.buttonMasComentarios}>
-                            <Text style={styles.textoBotonComentarios}  onPress={()=>this.props.navigation.navigate('Comentarios')}>Todos los comentarios</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
         )
     }
@@ -164,7 +133,6 @@ const styles = StyleSheet.create({
       borderStyle: "solid",
       borderColor: "#28a745",
       width:125,
-      marginBottom: 5,
     },
 
     button2: {
@@ -177,7 +145,6 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderColor: "red",
         width:125,
-        marginBottom: 5,
       },
 
       deletebutton: {
@@ -222,7 +189,7 @@ const styles = StyleSheet.create({
         fontFamily:"Arial"
     },
     contenedor:{
-        flexDirection:'row',
+        flexDirection:'column',
         backgroundColor:'#ff8370',
         borderStyle: 'solid',
         borderBlockColor:"black",
@@ -262,10 +229,11 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderStyle: 'solid',
         borderColor: 'black',
-        height:20,
-        width:60,
+        height:30,
+        width:125,
         marginLeft:5,
-        marginTop:15,
+        marginTop:5,
+        marginBottom:5,
     },
     comentarioShow:{
         color:'black',
