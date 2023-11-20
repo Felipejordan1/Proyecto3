@@ -47,14 +47,14 @@ class Loguearse extends Component {
                 <Image style={styles.image} source={require('../../../assets/InstaSport.PNG')} resizeMode= 'center'/>
                 <Text style={styles.textoLogin}>Login</Text>
                 <TextInput
-                    style={styles.input1}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
                     placeholder='Email'
                     keyboardType='email-address'
                     value={this.state.email}
                     />
                 <TextInput
-                    style={styles.input2}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
                     placeholder='Password'
                     keyboardType='email-address'
@@ -84,18 +84,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:30,
     },
-    input2:{
-        height:20,
-        paddingVertical:15,
-        paddingHorizontal: 10,
-        borderWidth:1,
-        backgroundColor:'white',
-        borderColor: 'black',
-        borderStyle: 'solid',
-        borderRadius: 6,
-        marginVertical:10,
-    },
-    input1:{
+    input:{
         height:20,
         paddingVertical:15,
         paddingHorizontal: 10,
@@ -131,10 +120,7 @@ const styles = StyleSheet.create({
     },
     image:{
         height:300,
-        width:"100%",
-    },
-    textoBoton:{
-        color:'#FFFFFF'
+        width:"100%"
     },
     error:{
         color: 'red'

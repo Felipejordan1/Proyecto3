@@ -38,10 +38,10 @@ class Registro extends Component {
     render(){
         return(
             <View style={styles.formContainer}>
-                <Image style={styles.image} source={require('../../../assets/logonewgarden.jpg')} resizeMode= 'center'/>
-                <Text>Registrarme:</Text>
+                <Image style={styles.image} source={require('../../../assets/InstaSport.PNG')} resizeMode= 'center'/>
+                <Text style={styles.textoRegister}>Registrarme:</Text>
                 <TextInput
-                    style={styles.input1}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
                     placeholder='email'
                     keyboardType='email-address'
@@ -49,14 +49,14 @@ class Registro extends Component {
                     />
                 <Text style={styles.error}>{this.state.error}</Text>
                 <TextInput
-                    style={styles.input2}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({userName: text})}
                     placeholder='nombre de usuario'
                     keyboardType='default'
                     value={this.state.userName}
                     />
                 <TextInput
-                    style={styles.input1}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
                     placeholder='contraseña'
                     keyboardType='default'
@@ -65,14 +65,14 @@ class Registro extends Component {
                 />
                 <Text style={styles.error}>{this.state.error}</Text>
                 <TextInput
-                    style={styles.input2}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({biografia: text})}
                     placeholder='Esta es tu biografia, cuentanos algo de ti'
                     keyboardType='default'
                     value={this.state.biografia}
                 />
                 <TextInput
-                    style={styles.input1}
+                    style={styles.input}
                     onChangeText={(text)=>this.setState({profilePicture: text})}
                     placeholder='Podes poner tu foto de perfil aqui'
                     keyboardType='default'
@@ -82,7 +82,7 @@ class Registro extends Component {
                     <Text style={styles.textButton}>Registrarse</Text>    
                 </TouchableOpacity>): (<Text></Text>)}
                 <TouchableOpacity style={styles.buttonRegister} onPress={()=>this.props.navigation.navigate('Loguearse')}>
-                    <Text style={styles.textoBoton}>¿Ya tenes cuenta? Inicia sesion</Text>  
+                    <Text style={styles.textButton}>¿Ya tenes cuenta? Inicia sesion</Text>  
                 </TouchableOpacity>
                 
             </View>
@@ -95,62 +95,54 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#ff8370',
         height:'97vh'
     },
-    input2:{
-        height:45,
-        paddingVertical:15,
-        paddingHorizontal: 10,
-        borderWidth:1,
-        borderColor: '#28a745',
-        borderStyle: 'solid',
-        borderRadius: 6,
-        marginVertical:10,
+    textoRegister:{
+        fontWeight:'bold',
+        fontSize:30,
     },
-    input1:{
-        height:45,
+    input:{
+        height:20,
         paddingVertical:15,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#FF0000',
+        backgroundColor:'white',
+        borderColor: 'black',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
     },
     button:{
+        backgroundColor:'#28a745',
         padding:10,
-        borderSolid:'solid',
-        borderRadius:4,
+        textAlign: 'center',
+        borderRadius:4, 
         borderWidth:1,
-        borderColor:'#28a745',
-        textAlign: 'justify',
-        backgroundColor: '#28a745',
+        borderStyle: 'solid',
+        borderColor: 'white'
     },
     textButton:{
         color: '#fff'
     },
     buttonRegister:{
+        color: "#000",
         padding:10,
         marginVertical:10,
         borderSolid:'solid',
         borderRadius:4,
         borderWidth:1,
-        borderColor:'red',
-        textAlign: 'justify',
-        backgroundColor: '#FF0000',
+        borderColor:'white',
+        textAlign: 'center',
+        backgroundColor:'black'
     },
     image:{
-        height:80,
-        width:"100%",
-    },
-    textoBoton:{
-        color:'#FFFFFF'
+        height:300,
+        width:"100%"
     },
     error:{
         color: 'red'
-    }
-
+    },
 
 })
 

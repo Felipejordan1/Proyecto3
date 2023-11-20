@@ -56,9 +56,20 @@ class User extends Component {
         })
         .catch(e => {console.log(e)})
     }
+    deleteUser(id){
+        db.collection('usuarios').doc(id).delete()
+        .then(() => {
+            auth.currentUser.delete()
+            this.props.navigation.navigate('Registro')
+            console.log('Post eliminado');
+        })
+        .catch( e => console.log(e))
+       }
+    
 
     render(){
         console.log(this.state.cantPosts);
+        console.log(this.state.users);
         return(
             <ScrollView>
                 <Text style={styles.screenTitle}>Profile</Text>
@@ -70,17 +81,13 @@ class User extends Component {
                         keyExtractor={ user => user.id }
                         renderItem={ ({item}) => 
                         <View>
-                        <Text>Username: {item.data.userName}</Text> 
-                        <Image
-                        style={{width: 100, height: 80 }}
-                        source={{ uri: item.data.FotoPerfil}}
-                        />
+                        <Text>Username: {item.data.username}</Text> 
                         <Text>Descripción: {item.data.ShortBio}</Text>
                         
                         </View>
                     }
                     />
-                    
+                
                     
                 <TouchableOpacity style={styles.button} onPress={()=>this.logout()}>
                     <Text style={styles.textButton}>Log out</Text>
@@ -94,6 +101,9 @@ class User extends Component {
                         renderItem={ ({item}) => <Post dataPost = { item } /> }
                         style= {styles.listaPosts}
                     />
+                <TouchableOpacity style={styles.button} onPress={()=>this.deleteUser(this.state.users[0].id)}>
+                    <Text style={styles.textButton}>Borrar Perfil</Text>
+                </TouchableOpacity>
 
                 
             </ScrollView>
