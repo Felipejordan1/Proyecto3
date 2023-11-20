@@ -63,8 +63,8 @@ class Buscador extends Component {
         return(
             <ScrollView>
                 
-                <Text style={styles.screenTitle}>Encontra otros usuarios:</Text>
-                <View style={styles.searchContainer}>
+                <Text style={styles.title}>Encontra otros usuarios:</Text>
+                <View style={styles.container}>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=> (this.searchUsers(text), this.setState({searchText: text}))}
@@ -104,16 +104,16 @@ class Buscador extends Component {
 }
 
 const styles = StyleSheet.create({
-    //CONTENEDOR GENERAL
-    screenTitle:{
+
+    title:{
         fontSize: 30,
         fontWeight: 'bold',
         marginLeft: 20,
         marginVertical: 10
     },
-    searchContainer:{
+    container:{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'salmon',
         borderRadius: 6,
         marginHorizontal: 20,
         flexDirection: 'row',
@@ -133,13 +133,15 @@ const styles = StyleSheet.create({
         
     },
     cadaResult:{
-        backgroundColor:"white",
+        backgroundColor:"salmon",
         padding:5,
         borderRadius: 6,
         margin:10,
         display:'flex',
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        borderWidth: 3,
+        borderColor: "black",
 
     },
     profileImage: {
@@ -149,6 +151,9 @@ const styles = StyleSheet.create({
         backgroundColor:"lightgrey",
         borderRadius: 50,
         margin:10,
+        borderWidth: 3,
+        borderColor: "black",
+
 
     },
     usuario:{

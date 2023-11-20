@@ -7,7 +7,8 @@ class PostForm extends Component {
     constructor(){
         super()
         this.state={
-            nombrePost: "", showCamera: true, url: ''
+            nombrePost: "", showCamera: true, url: '',showSuccessMessage: false 
+
         }
     }
     postear(){
@@ -17,6 +18,8 @@ class PostForm extends Component {
             photo: this.state.url,
             likes:[],
             createdAt:Date.now(),
+            showSuccessMessage: true 
+
         })
         .then(console.log('Tu posteo se subio correctamente'))
         .catch(error=>console.log(`el error fue ${error}`))
@@ -35,7 +38,7 @@ class PostForm extends Component {
 
             <View style={styles.formContainer}>          
               
-              <Text>PostForm</Text>
+              <Text>Sube tu Posteo</Text>
     
             {this.state.showCamera ? <MyCamera onImageUpload={(url) => this.onImageUpload(url)} /> : 
     
@@ -55,6 +58,16 @@ class PostForm extends Component {
               <Text style={styles.textButton}>Postear</Text>
             </TouchableOpacity>
             </> }
+
+              {this.state.showSuccessMessage &&  (
+                      <View >
+                          <Text >
+                              Tu post ya está disponible en tu perfil
+                          </Text>
+                      </View>
+                  )}
+
+            
           </View>
         );
       }
