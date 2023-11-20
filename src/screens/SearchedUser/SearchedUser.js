@@ -47,11 +47,14 @@ class SearchedUser extends Component{
 
         return(
             <ScrollView style={styles.container}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Menu')} style={styles.buttonMenu}>
+                    <Text style={styles.textButton}>Volver al Home</Text>
+                </TouchableOpacity>
                 <View style={styles.profileInfo}>
-                <Text style={styles.username}>{this.state.suInfo.userName}</Text>
-                <Text style={styles.bio}> Biografía:{this.state.suInfo.bio}</Text>
+                <Text style={styles.username}>Bienvenido al usuario de {this.state.suInfo.owner}</Text>
+                {this.state.suInfo.bio!=null?(<Text style={styles.bio}> Biografía:{this.state.suInfo.bio}</Text>):(<Text></Text>)}
                 <Text style={styles.posts} >Cantidad de posts: {this.state.susPosts.length}</Text>
-                <Image style={styles.profileImage} source={{ uri: this.state.suInfo.profileImage }}/>
+                {this.state.suInfo.profileImage!=null?(<Image style={styles.profileImage} source={{ uri: this.state.suInfo.profileImage }}/>):(<Text></Text>)}
                 </View> 
 
                 <Text style={styles.sectionTitle}>Posteos:</Text>
@@ -60,9 +63,6 @@ class SearchedUser extends Component{
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <Post dataPost={item} navigation={this.props.navigation} />}
                 />
-                <Text onPress={() => this.props.navigation.navigate("TabNavigation")}>
-                Volver a home
-                </Text>
             
             </ScrollView>
 
@@ -106,6 +106,24 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
+    },
+    buttonMenu:{
+        backgroundColor:'black',
+        padding:10,
+        justifyContent:'center',
+        alignContent:'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: 'black',
+        height:30,
+        width:125,
+        marginLeft:5,
+        marginTop:5,
+        marginBottom:5,
+    },
+    textButton:{
+        color:'white',
     },
 });
 export default SearchedUser;
